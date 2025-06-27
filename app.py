@@ -14,7 +14,7 @@ def login():
         print("Username:", username)
         print("Password:", password)
 
-    if username == VALID_USERNAME and password == VALID_PASSWORD:
+        if username == VALID_USERNAME and password == VALID_PASSWORD:
             return redirect(url_for('dashboard'))
         else:
             return render_template('indexe.html', error="Invalid credentials")
