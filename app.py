@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -14,12 +14,16 @@ def login():
         print("Username:", username)
         print("Password:", password)
 
-        if username == VALID_USERNAME and password == VALID_PASSWORD:
-            return "<h2 style='color:green;'>Login successful!</h2>"
+if username == VALID_USERNAME and password == VALID_PASSWORD:
+            return redirect(url_for('dashbord'))
         else:
-            return "<h2 style='color:red;'>Your password is invalid.</h2>"
+            return render_template('indexe.html', error="Invalid credentials")
 
     return render_template('indexe.html')
+
+@app.route('/dashbord')
+def dashbord():
+    return render_template('dashbord.html')
 
 if __name__ == '__main__':
     app.run()
